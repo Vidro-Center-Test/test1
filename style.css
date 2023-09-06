@@ -1,0 +1,421 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+header{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    height: 90vh;
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url(data:image/png;base64,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) no-repeat center;
+    background-size: cover;
+    z-index: -1;
+    opacity: 0.3;
+  }
+
+main{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.header-cabecalho{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.header-cabecalho ul{
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.header-cabecalho a{
+    text-decoration: none;
+    margin: 0px 10px;
+    font-size: 20px;
+    color: white;
+}
+
+.header-cabecalho a:hover{
+    text-decoration: underline 2px;
+}
+
+.header-cabecalho img{
+    width: 150px;
+    height: 90px;
+}
+
+.header-texto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    color: purple;
+    /* color: white; */
+}
+
+.header-texto h1{
+    margin-bottom: 20px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.article-orcamento-fundo{
+    width: 100vw;
+    height: 90vh;
+    z-index: -1;
+}
+
+.texto-orcamento{
+    text-align: center;
+}
+
+.texto-orcamento h1{
+    margin-bottom: 20px;
+}
+
+.texto-orcamento h2{
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.orcamento-preenchimento{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.dados-orcamento{
+   display: flex;
+   flex-direction: column;
+   font-size: 14px;
+}
+
+.dados-orcamento img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid black;
+    padding: 10px 10px;
+    margin-right: 20px;
+}
+
+.orcamento-cards-dados{
+    display: flex;
+    margin-bottom: 20px;
+    font-size: 12px;
+    align-items: center;
+}
+
+.orcamento-cards-dados h1{
+    color: red;
+    -webkit-text-stroke: 0.2px black;
+}
+
+.recebe-orcamento{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 2px solid black;
+    padding: 20px;
+    align-items: center;
+}
+
+.recebe-orcamento h1{
+    margin-bottom: 30px;
+}
+
+.recebe-orcamento form input[type="text"]{
+    border: none;
+    border-bottom: 2px solid black;
+    padding: 5px 5px;
+    margin-bottom: 30px;
+    width: 20vw;
+}
+
+.recebe-orcamento form input[type="text"]:focus{
+    outline: none;
+}
+
+.recebe-orcamento form input[type="submit"]{
+    color: black;
+    background: white;
+    width: 20vw;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.recebe-orcamento form input[type="submit"]:hover{
+    color: white;
+    background: black;
+    width: 20vw;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.feedbacks{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0px;
+}
+
+.feedbacks h1{
+    color: red;
+    font-size: 150px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.feedbacks h2{
+    font-style: italic;
+    font-size: 30px;
+    margin: 20px 50px;
+}
+
+.feedbacks ul{
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.feedbacks a{
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: red;
+    text-decoration: none;
+    margin: 5px;
+    border-radius: 50%;
+}
+
+.feedbacks .feedbacks-selecionado{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: red;
+    text-decoration: none;
+    border: 1px solid black;
+    margin: 5px;
+    border-radius: 50%;
+}
+
+.feedbacks .caixa-feedbacks{
+    display: flex;
+    align-items: center;
+}
+
+.feedbacks .caixa-feedbacks label{
+    font-size: 30px;
+    background: rgb(255, 60, 60);
+    width: 30px;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+.nossos-produtos{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+}
+
+.nossos-produtos h1{
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: red;
+}
+
+.nossos-produtos .produtos-imagens{
+    display: flex;
+    align-items: center;
+}
+
+.nossos-produtos .produtos-imagens div{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    align-items: center;
+}
+
+.nossos-produtos .produtos-imagens label{
+    font-size: 20px;
+    color: red;
+}
+
+
+.nossos-produtos .produtos-imagens img{
+    width: 250px;
+    height: 250px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.nossos-produtos .produtos-imagens h4{
+    font-size: 30px;
+    background: rgb(255, 60, 60);
+    width: 35px;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    margin: 0px 50px;
+}
+
+.nossos-produtos ul{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    margin-top: 10px;
+}
+
+
+.nossos-produtos a{
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: red;
+    text-decoration: none;
+    margin: 5px;
+    border-radius: 50%;
+}
+
+.nossos-produtos .feedbacks-selecionado{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: red;
+    text-decoration: none;
+    border: 1px solid black;
+    margin: 5px;
+    border-radius: 50%;
+}
+
+.empresas-clientes{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 50px 0px;
+    color: red;
+}
+
+.empresas-clientes h2{
+    font-weight: 0;
+    margin-top: 20px;
+}
+
+.empresas-clientes img{
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+}
+
+.empresas-clientes label{
+    margin: 0px 50px;
+    font-size: 40px;
+    color: rgb(253, 102, 102);
+}
+
+.empresas-clientes .foto-empresas-clientes{
+    display: flex;
+    align-items: center;
+}
+
+.localizacao{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.localizacao h1{
+    color: red;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.localizacao a{
+    width: 50vw;
+    height: 50vh;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.localizacao button{
+    background: red;
+    color: white;
+    text-align: center;
+    width: 10vw;
+    height: 8vh;
+    font-size: 16px;
+    margin-top: 20px;
+    border: none;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.localizacao button:hover{
+    color: red;
+    background: white;
+    border: 2px solid red;
+    text-decoration: underline 2px;
+}
+
+footer{
+    background: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    margin-top: 50px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.rodape{
+    display: flex;
+    margin-bottom: 50px;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.rodape img{
+    width: 220px;
+}
+
+.rodape-texto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    color: white;
+    font-weight: bold;
+}
+
+.rodape-texto h1{
+    margin-bottom: 30px;
+}
+
+.rodape-texto label{
+    font-size: 18px;
+}
+
+footer h2{
+    font-size: 18px;
+    color: white;
+}
